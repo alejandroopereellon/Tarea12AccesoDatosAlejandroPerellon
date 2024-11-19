@@ -127,7 +127,7 @@ public class Main {
 			/**
 			 * Vaciamos la tabla
 			 */
-			new GestionBaseDatos().truncarTabla();
+			new GestionBaseDatos().seleccionaTablaParaTruncar();
 			System.out.println("Se ha truncado la tabla");
 			break;
 		case 11:
@@ -184,6 +184,7 @@ public class Main {
 			System.out.println("Ha ocurrido un error al procesar el numero");
 			solicitarNumero();
 		}
+		sc.close();
 		return 0;
 	}
 }

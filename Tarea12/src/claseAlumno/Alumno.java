@@ -29,6 +29,10 @@ public class Alumno {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public Alumno() {
+		super();
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

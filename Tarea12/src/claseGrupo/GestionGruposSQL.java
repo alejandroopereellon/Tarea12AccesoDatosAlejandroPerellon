@@ -16,7 +16,7 @@ public class GestionGruposSQL {
 	public void insertarGruposBD(Grupo grupo) {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement ps = conexion
-						.prepareStatement("INSERT id, nombre, descripcion, tutor INTO GRUPO VALUES ?,?,?,?")) {
+						.prepareStatement("INSERT INTO grupo (id, nombre, descripcion, tutor) VALUES (?, ?, ?, ?)")) {
 
 			ps.setString(1, grupo.getId());
 			ps.setString(2, grupo.getNombre());
@@ -36,22 +36,22 @@ public class GestionGruposSQL {
 	public void mostrarAlumnosyGrupos() {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement ps = conexion.prepareStatement(
-						"SELECT a.nia ,a.nombre ,a.apellidos, a.genero, a.fechaNacimiento, a.ciclo, a.curso, a.grupo, g.id, g.nombre, g.descripcion, g.tutor  FROM alumno a LEFT JOIN grupo g ON a.grupo = g.id ORDER BY a.id")) {
+						"SELECT a.nia ,a.nombre ,a.apellidos, a.genero, a.fechaNacimiento, a.ciclo, a.curso, a.grupo, g.id, g.nombre, g.descripcion, g.tutor  FROM alumno a LEFT JOIN grupo g ON a.grupo = g.id ORDER BY a.nia")) {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				System.out.println("NIA: " + rs.getInt("NIA"));
-				System.out.println("Nombre: " + rs.getString("Nombre"));
-				System.out.println("Apellidos: " + rs.getString("Apellidos"));
-				System.out.println("Género: " + rs.getString("Genero"));
-				System.out.println("Fecha de nacimiento: " + rs.getDate("FechaNacimiento"));
-				System.out.println("Ciclo: " + rs.getString("Ciclo"));
-				System.out.println("Curso: " + rs.getString("Curso"));
-				System.out.println("Grupo: " + rs.getString("Grupo"));
-				System.out.println("Grupo ID: " + rs.getInt("id"));
-				System.out.println("Grupo Nombre: " + rs.getString("Nombre"));
-				System.out.println("Grupo Descripción: " + rs.getString("Descripcion"));
-				System.out.println("Tutor: " + rs.getString("Tutor"));
+				System.out.println("NIA: " + rs.getInt("a.NIA"));
+				System.out.println("Nombre: " + rs.getString("a.Nombre"));
+				System.out.println("Apellidos: " + rs.getString("a.Apellidos"));
+				System.out.println("Género: " + rs.getString("a.Genero"));
+				System.out.println("Fecha de nacimiento: " + rs.getDate("a.FechaNacimiento"));
+				System.out.println("Ciclo: " + rs.getString("a.Ciclo"));
+				System.out.println("Curso: " + rs.getString("a.Curso"));
+				System.out.println("Grupo: " + rs.getString("a.Grupo"));
+				System.out.println("Grupo ID: " + rs.getString("g.id"));
+				System.out.println("Grupo Nombre: " + rs.getString("g.Nombre"));
+				System.out.println("Grupo Descripción: " + rs.getString("g.Descripcion"));
+				System.out.println("Tutor: " + rs.getString("g.Tutor"));
 				System.out.println("----------------------------"); // Separador para cada alumno
 			}
 		} catch (Exception e) {
@@ -78,10 +78,10 @@ public class GestionGruposSQL {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement ps = conexion.prepareStatement("DELETE FROM alumno WHERE grupo = ?")) {
 			ps.setString(1, grupoBorrar);
+			new GestionBaseDatos().ejecutarSentencia(ps);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		sc.close();
 	}
 
 	/**
@@ -89,14 +89,15 @@ public class GestionGruposSQL {
 	 */
 	private void mostrarTablaGrupos() {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
-				PreparedStatement ps = conexion.prepareStatement("SELECT id, Nombre, Grupo, Tutor FROM grupo")) {
+				PreparedStatement ps = conexion.prepareStatement("SELECT id, Nombre, Descripcion, Tutor FROM grupo")) {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				System.out.println("Grupo ID: " + rs.getInt("id"));
+				System.out.println("Grupo ID: " + rs.getString("id"));
 				System.out.println("Grupo Nombre: " + rs.getString("Nombre"));
 				System.out.println("Grupo Descripción: " + rs.getString("Descripcion"));
 				System.out.println("Tutor: " + rs.getString("Tutor"));
+				System.out.println("________________________________");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

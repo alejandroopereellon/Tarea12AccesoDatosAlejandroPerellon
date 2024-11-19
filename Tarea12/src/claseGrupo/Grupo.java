@@ -19,44 +19,44 @@ public class Grupo {
 	public Grupo() {
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getTutor() {
+		return tutor;
+	}
+
+	public void setTutor(String tutor) {
+		this.tutor = tutor;
+	}
+
 	public List<Alumno> getListaALumnosParticipantes() {
 		return listaALumnosParticipantes;
 	}
 
 	public void setListaALumnosParticipantes(List<Alumno> listaALumnosParticipantes) {
 		this.listaALumnosParticipantes = listaALumnosParticipantes;
-	}
-
-	protected String getId() {
-		return id;
-	}
-
-	protected void setId(String id) {
-		this.id = id;
-	}
-
-	protected String getNombre() {
-		return nombre;
-	}
-
-	protected void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	protected String getDescripcion() {
-		return descripcion;
-	}
-
-	protected void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	protected String getTutor() {
-		return tutor;
-	}
-
-	protected void setTutor(String tutor) {
-		this.tutor = tutor;
 	}
 
 }

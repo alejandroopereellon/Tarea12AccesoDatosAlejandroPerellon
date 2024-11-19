@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import claseAlumno.Alumno;
@@ -21,11 +22,12 @@ public class GestionArchivosJSON {
 	 */
 	public void guardarGruposJSON() {
 		List<Grupo> listaGrupos = new GestionGruposSQL().almacenarAlumnosQuePertenecenAlGrupo();
-
 		// Anadimos el arraylist de grupos al archivos json
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.registerModule(new JavaTimeModule());
+			mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
 			mapper.writeValue(ARCHIVO_JSON, listaGrupos);
 			System.out.println("Se ha creado el listado de grupos en JSON");
 		} catch (Exception e) {
@@ -35,10 +37,11 @@ public class GestionArchivosJSON {
 
 	public void recuperarObjetoGrupoDesdeJSON() {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
+		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		try {
 			List<Grupo> listaGrupos = mapper.readValue(ARCHIVO_JSON,
 					mapper.getTypeFactory().constructCollectionLikeType(List.class, Grupo.class));
-
 			// Anadimos los grupos a las bases de datos
 			for (Grupo gru : listaGrupos) {
 				// Almacenamos los grupos del json
