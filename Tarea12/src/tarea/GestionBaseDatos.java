@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 public class GestionBaseDatos {
-	protected Connection CrearConexion() {
+	public Connection CrearConexion() {
 		String url = "jdbc:mysql://localhost:3306/alumnos02";
 		String usuario = "root";
 		String contrasena = "puesto02";

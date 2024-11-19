@@ -1,4 +1,4 @@
-package alumno;
+package claseAlumno;
 
 import java.time.LocalDate;
 import java.time.Year;

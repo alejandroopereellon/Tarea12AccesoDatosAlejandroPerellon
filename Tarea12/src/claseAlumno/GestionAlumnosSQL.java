@@ -1,4 +1,4 @@
-package tarea;
+package claseAlumno;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,8 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-import alumno.Alumno;
+import tarea.GestionBaseDatos;
 
 public class GestionAlumnosSQL {
 	public void insertarAlumno(Alumno alumno) {
@@ -50,38 +51,31 @@ public class GestionAlumnosSQL {
 	 * 
 	 * @return String con toda la base de datos escrita
 	 */
-	public String mostarAlumnosFormatoString() {
-		String filas = "";
-		try (Connection conexion = new GestionBaseDatos().CrearConexion();
-				PreparedStatement stmt = conexion.prepareStatement("Select * from alumno")) {
-			// Ejecutar la consulta y obtener resultados
-			ResultSet rs = stmt.executeQuery();
-
-			// Procesar el resultado
-			while (rs.next()) {
-				int nia = rs.getInt("nia");
-				String nombre = rs.getString("Nombre");
-				String apellidos = rs.getString("Apellidos");
-				String genero = rs.getString("Genero");
-				LocalDate fechaNacimiento = rs.getDate("FechaNacimiento").toLocalDate();
-				String ciclo = rs.getString("Ciclo");
-				String curso = rs.getString("Curso");
-				String grupo = rs.getString("Grupo");
-
-				filas += nia + " | " + nombre + " | " + apellidos + " | " + genero + " | " + fechaNacimiento + " | "
-						+ ciclo + " | " + curso + " | " + grupo + System.lineSeparator();
-
+	public void almacenarAlumnosFormatoTexto(File fichero) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fichero))) {
+			for (Alumno alumno : mostarAlumnosConsultaSelect()) {
+				bw.write(alumno.getNia() + " | " + alumno.getNombre() + " | " + alumno.getApellidos() + " | "
+						+ alumno.getGenero() + " | " + alumno.getFechaNacimiento() + " | " + alumno.getCiclo() + " | "
+						+ alumno.getCurso() + " | " + alumno.getGrupo() + System.lineSeparator());
 			}
+			System.out.println("Se han almacenado los datos correctamente");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return filas;
+
+	}
+	
+	public void mostarAlumnosFormatoString() {
+		for (Alumno alumno : mostarAlumnosConsultaSelect()) {
+			System.out.println(alumno);
+		}
 	}
 
 	public ArrayList<Alumno> mostarAlumnosConsultaSelect() {
 		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
-				PreparedStatement stmt = conexion.prepareStatement("Select * from alumno")) {
+				PreparedStatement stmt = conexion.prepareStatement(
+						"Select nia,nombre,apellidos,genero,fechanacimiento,ciclo,curso,grupo from alumno")) {
 			// Ejecutar la consulta y obtener resultados
 			ResultSet rs = stmt.executeQuery();
 
@@ -103,15 +97,6 @@ public class GestionAlumnosSQL {
 			e.printStackTrace();
 		}
 		return listaAlumnos;
-	}
-
-	public void almacenarTextoBaseDatos(File fichero) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fichero))) {
-			bw.write(mostarAlumnosFormatoString());
-			System.out.println("Se han almacenado los datos correctamente");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public ArrayList<Alumno> leerAlumnosDesdeFicheroTexto(File fichero) {
@@ -162,6 +147,5 @@ public class GestionAlumnosSQL {
 			e.printStackTrace();
 		}
 	}
-
 
 }

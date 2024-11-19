@@ -3,11 +3,15 @@ package tarea;
 import java.io.File;
 import java.util.Scanner;
 
-import alumno.Alumno;
-import alumno.CrearAlumnos;
+import claseAlumno.Alumno;
+import claseAlumno.CrearAlumnos;
+import claseAlumno.GestionAlumnosSQL;
+import claseGrupo.CrearGrupo;
+import claseGrupo.GestionGruposSQL;
 
 public class Main {
-	File fichero = new File("src\\tarea11\\BasesDatos\\ConsultaAlumnos.txt");
+	File ficheroAlumnosTexto = new File("src\\tarea\\datos\\ConsultaAlumnosTexto.txt");
+	File ficheroGruposTexto = new File("src\\tarea\\datos\\consultaGruposTexto.txt");
 	Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -28,7 +32,10 @@ public class Main {
 				+ "8. Guardar todos los alumnos de la base de datos en un fichero XML" + System.lineSeparator()
 				+ "9. Leer un fichero XML y guardarlo en la base de datos" + System.lineSeparator()
 				+ "10. Vaciar la base de datos" + System.lineSeparator() + "11. Salir" + System.lineSeparator()
-				+ "Respuesta: ");
+				+ "12. Insertar grupos" + System.lineSeparator() + "13. Mostrar alumos y grupos"
+				+ System.lineSeparator() + "14. Eliminar alumnos segun el grupo" + System.lineSeparator()
+				+ "15. Almacenar los grupos y sus alumnos en un JSON" + System.lineSeparator()
+				+ "16. Recuperar los grupos y sus alumnos de JSON a una BD" + System.lineSeparator() + "Respuesta: ");
 		swtichRealizarAccion(solicitarNumero());
 		opcionesResumidas();
 	}
@@ -57,20 +64,20 @@ public class Main {
 			/**
 			 * Mostar todos los alumnos (en consola).
 			 */
-			System.out.println(new GestionAlumnosSQL().mostarAlumnosFormatoString());
+			new GestionAlumnosSQL().mostarAlumnosFormatoString();
 			break;
 		case 3:
 			/**
 			 * Guardar todos los alumnos en un fichero (tú eliges el formato del fichero,
 			 * pero no puede ser XML ni JSON).
 			 */
-			new GestionAlumnosSQL().almacenarTextoBaseDatos(fichero);
+			new GestionAlumnosSQL().almacenarAlumnosFormatoTexto(ficheroAlumnosTexto);
 			break;
 		case 4:
 			/**
 			 * Leer alumnos de un fichero (con el formato anterior), y guardarlo en una BD.
 			 */
-			for (Alumno alum : new GestionAlumnosSQL().leerAlumnosDesdeFicheroTexto(fichero)) {
+			for (Alumno alum : new GestionAlumnosSQL().leerAlumnosDesdeFicheroTexto(ficheroAlumnosTexto)) {
 				new GestionAlumnosSQL().insertarAlumno(alum);
 			}
 			break;
@@ -107,14 +114,14 @@ public class Main {
 			/*
 			 * Guardar todos los alumnos en un fichero XML o JSON. //
 			 */
-			new GestionArchivosXML().almacenarBaseDatosEnXML();
+			new GestionArchivosXML().almacenarAlumnosBaseDatosEnXML();
 			break;
 		case 9:
 			/**
 			 * Leer un fichero XML o JSON de alumnos (con en formato anterior) y guardarlos
 			 * en la BD.
 			 */
-			new GestionArchivosXML().recuperarObjetoDesdeXMLAnadirBD();
+			new GestionArchivosXML().recuperarObjetoAlumnoDesdeXMLAnadirBD();
 			break;
 		case 10:
 			/**
@@ -133,14 +140,48 @@ public class Main {
 		default:
 			interfazGrafica();
 			break;
+		case 12:
+			/**
+			 * Se puedan insertar grupos.
+			 */
+			new GestionGruposSQL().insertarGruposBD(new CrearGrupo().crearGrupo());
+			break;
+		case 13:
+			/**
+			 * Mostrar alumnos y grupos
+			 */
+			new GestionGruposSQL().mostrarAlumnosyGrupos();
+			break;
+		case 14:
+			/**
+			 * Eliminar los alumnos del curso indicado por el usuario (debes mostrarle
+			 * previamente los cursos existentes).
+			 */
+			new GestionGruposSQL().eliminarAlumnosPorCurso();
+			break;
+		case 15:
+			/**
+			 * Guardar todos los grupos (con toda su información como atributos) en un
+			 * fichero XML o JSON. Para cada grupo se guardará también el listado de alumnos
+			 * de ese grupo. Los datos del alumno serán atributos en el XML.
+			 */
+			new GestionArchivosJSON().guardarGruposJSON();
+			break;
+		case 16:
+			/**
+			 * Leer un fichero XML o JSON de grupos (con en formato anterior) y guardarlos
+			 * en la BD.
+			 */
+			new GestionArchivosJSON().recuperarObjetoGrupoDesdeJSON();
+			break;
 		}
 	}
 
-	private int solicitarNumero() {
+	protected int solicitarNumero() {
 		try {
 			return sc.nextInt();
 		} catch (Exception e) {
-			System.out.println("Ha ocurrido un error al procesar el texto");
+			System.out.println("Ha ocurrido un error al procesar el numero");
 			solicitarNumero();
 		}
 		return 0;

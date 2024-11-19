@@ -1,0 +1,4 @@
+A|Grupo A|Grupo básico|Carla Martínez
+B|Grupo B|Grupo medio|Fernando García
+C|Grupo C|Grupo superior|Lucía Herrera
+D|Grupo D|Grupo avanzado|Javier Torres

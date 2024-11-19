@@ -15,10 +15,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import alumno.Alumno;
+import claseAlumno.Alumno;
+import claseAlumno.GestionAlumnosSQL;
 
 public class GestionArchivosXML {
-	public void almacenarBaseDatosEnXML() {
+
+	private void crearNuevoElementoHijo(Document doc, Element alumno, String nombreElemento, String datosElemento) {
+		Element elemento = doc.createElement(nombreElemento);
+		elemento.setTextContent(datosElemento);
+		alumno.appendChild(elemento);
+	}
+
+	public void almacenarAlumnosBaseDatosEnXML() {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -57,13 +65,7 @@ public class GestionArchivosXML {
 
 	}
 
-	private void crearNuevoElementoHijo(Document doc, Element alumno, String nombreElemento, String datosElemento) {
-		Element elemento = doc.createElement(nombreElemento);
-		elemento.setTextContent(datosElemento);
-		alumno.appendChild(elemento);
-	}
-
-	public void recuperarObjetoDesdeXMLAnadirBD() {
+	public void recuperarObjetoAlumnoDesdeXMLAnadirBD() {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
