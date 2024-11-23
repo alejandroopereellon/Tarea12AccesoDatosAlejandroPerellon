@@ -1,13 +1,8 @@
 package claseGrupo;
 
-import java.util.List;
-
-import claseAlumno.Alumno;
-
 public class Grupo {
 
 	String id, nombre, descripcion, tutor;
-	List<Alumno> listaALumnosParticipantes;
 
 	public Grupo(String id, String nombre, String descripcion, String tutor) {
 		this.id = id;
@@ -51,12 +46,5 @@ public class Grupo {
 		this.tutor = tutor;
 	}
 
-	public List<Alumno> getListaALumnosParticipantes() {
-		return listaALumnosParticipantes;
-	}
-
-	public void setListaALumnosParticipantes(List<Alumno> listaALumnosParticipantes) {
-		this.listaALumnosParticipantes = listaALumnosParticipantes;
-	}
 
 }

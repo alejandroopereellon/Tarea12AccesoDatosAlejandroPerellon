@@ -8,6 +8,10 @@ import claseAlumno.CrearAlumnos;
 import claseAlumno.GestionAlumnosSQL;
 import claseGrupo.CrearGrupo;
 import claseGrupo.GestionGruposSQL;
+import claseTratamientoJSON.GestionArchivosJSON;
+import clasesTratamientoXML.GestionArchivosXMLTarea11;
+import clasesTratamientoXML.GestionCrearArchivosXMLGrupos;
+import clasesTratamientoXML.GestionProcesarArchivosXMLGrupos;
 
 public class Main {
 	File ficheroAlumnosTexto = new File("src\\tarea\\datos\\ConsultaAlumnosTexto.txt");
@@ -35,7 +39,9 @@ public class Main {
 				+ "12. Insertar grupos" + System.lineSeparator() + "13. Mostrar alumos y grupos"
 				+ System.lineSeparator() + "14. Eliminar alumnos segun el grupo" + System.lineSeparator()
 				+ "15. Almacenar los grupos y sus alumnos en un JSON" + System.lineSeparator()
-				+ "16. Recuperar los grupos y sus alumnos de JSON a una BD" + System.lineSeparator() + "Respuesta: ");
+				+ "16. Recuperar los grupos y sus alumnos de JSON a una BD" + System.lineSeparator()
+				+ "17. Almacenar los grupos y sus alumnos en un XML" + System.lineSeparator()
+				+ "18. Recuperar los grupos y sus alumnos de XML a una BD" + System.lineSeparator() + "Respuesta: ");
 		swtichRealizarAccion(solicitarNumero());
 		opcionesResumidas();
 	}
@@ -114,14 +120,14 @@ public class Main {
 			/*
 			 * Guardar todos los alumnos en un fichero XML o JSON. //
 			 */
-			new GestionArchivosXML().almacenarAlumnosBaseDatosEnXML();
+			new GestionArchivosXMLTarea11().almacenarAlumnosBaseDatosEnXML();
 			break;
 		case 9:
 			/**
 			 * Leer un fichero XML o JSON de alumnos (con en formato anterior) y guardarlos
 			 * en la BD.
 			 */
-			new GestionArchivosXML().recuperarObjetoAlumnoDesdeXMLAnadirBD();
+			new GestionArchivosXMLTarea11().recuperarObjetoAlumnoDesdeXMLAnadirBD();
 			break;
 		case 10:
 			/**
@@ -150,14 +156,14 @@ public class Main {
 			/**
 			 * Mostrar alumnos y grupos
 			 */
-			new GestionGruposSQL().mostrarAlumnosyGrupos();
+			new GestionGruposSQL().consultarAlumnosyGrupos();
 			break;
 		case 14:
 			/**
 			 * Eliminar los alumnos del curso indicado por el usuario (debes mostrarle
 			 * previamente los cursos existentes).
 			 */
-			new GestionGruposSQL().eliminarAlumnosPorCurso();
+			new GestionGruposSQL().mostrarAlumnosyEliminarlosPorGrupo();
 			break;
 		case 15:
 			/**
@@ -174,6 +180,15 @@ public class Main {
 			 */
 			new GestionArchivosJSON().recuperarObjetoGrupoDesdeJSON();
 			break;
+		case 17:
+			
+			new GestionCrearArchivosXMLGrupos().generarXMLGruposYSusAlumnos();
+			break;
+		case 18:
+			
+			new GestionProcesarArchivosXMLGrupos().convertirXMLGrupoAlumnosIntroducirlosBD();
+			break;
+			
 		}
 	}
 

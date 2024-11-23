@@ -1,6 +1,7 @@
 package claseGrupo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -29,11 +30,31 @@ public class GestionGruposSQL {
 		}
 	}
 
+	public void insertarAlumnosBD(Alumno alumno) {
+		try (Connection conexion = new GestionBaseDatos().CrearConexion();
+				PreparedStatement ps = conexion.prepareStatement(
+						"INSERT INTO alumno (nia, nombre, apellidos, genero, fechaNacimiento,ciclo, curso, grupo) VALUES (?,?,?,?,?,?,?,?)")) {
+
+			ps.setInt(1, alumno.getNia());
+			ps.setString(2, alumno.getNombre());
+			ps.setString(3, alumno.getNombre());
+			ps.setString(4, String.valueOf(alumno.getGenero()));
+			ps.setDate(5, Date.valueOf(alumno.getFechaNacimiento()));
+			ps.setString(6, alumno.getCiclo());
+			ps.setString(7, alumno.getCurso());
+			ps.setString(8, alumno.getGrupo());
+
+			new GestionBaseDatos().ejecutarSentencia(ps);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Mostar todos los alumnos (en consola): Mostrará los datos del alumno, y del
 	 * grupo al que pertenece.
 	 */
-	public void mostrarAlumnosyGrupos() {
+	public void consultarAlumnosyGrupos() {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement ps = conexion.prepareStatement(
 						"SELECT a.nia ,a.nombre ,a.apellidos, a.genero, a.fechaNacimiento, a.ciclo, a.curso, a.grupo, g.id, g.nombre, g.descripcion, g.tutor  FROM alumno a LEFT JOIN grupo g ON a.grupo = g.id ORDER BY a.nia")) {
@@ -63,7 +84,7 @@ public class GestionGruposSQL {
 	 * Eliminar los alumnos del curso indicado por el usuario (debes mostrarle
 	 * previamente los cursos existentes).
 	 */
-	public void eliminarAlumnosPorCurso() {
+	public void mostrarAlumnosyEliminarlosPorGrupo() {
 		mostrarTablaGrupos();
 
 		eliminarAlumnosPorGrupo();
@@ -104,7 +125,7 @@ public class GestionGruposSQL {
 		}
 	}
 
-	private List<Grupo> realizarConsultaListadoGrupos() {
+	public List<Grupo> realizarConsultaListadoGrupos() {
 		List<Grupo> listaGrupos = new ArrayList<Grupo>();
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement ps = conexion.prepareStatement("SELECT id, Nombre, Descripcion, Tutor FROM grupo")) {
@@ -119,7 +140,7 @@ public class GestionGruposSQL {
 		return listaGrupos;
 	}
 
-	private List<Alumno> realizarConsultaListadoAlumnosPertenecientesGrupo(Grupo grupo) {
+	public List<Alumno> realizarConsultaListadoAlumnosPertenecientesGrupo(Grupo grupo) {
 		List<Alumno> listaAlumnos = new ArrayList<Alumno>();
 
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
@@ -139,11 +160,12 @@ public class GestionGruposSQL {
 		return listaAlumnos;
 	}
 
-	public List<Grupo> almacenarAlumnosQuePertenecenAlGrupo() {
-		List<Grupo> listaGrupos = realizarConsultaListadoGrupos();
-		for (Grupo gru : listaGrupos) {
-			gru.setListaALumnosParticipantes(realizarConsultaListadoAlumnosPertenecientesGrupo(gru));
-		}
-		return listaGrupos;
-	}
+//	public List<Grupo> almacenarAlumnosQuePertenecenAlGrupo() {
+//		List<Grupo> listaGrupos = realizarConsultaListadoGrupos();
+//		for (Grupo gru : listaGrupos) {
+//			gru.setListaALumnosParticipantes(realizarConsultaListadoAlumnosPertenecientesGrupo(gru));
+//		}
+//		return listaGrupos;
+//	}
+
 }

@@ -1,4 +1,4 @@
-package tarea;
+package clasesTratamientoXML;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -18,7 +18,8 @@ import org.w3c.dom.NodeList;
 import claseAlumno.Alumno;
 import claseAlumno.GestionAlumnosSQL;
 
-public class GestionArchivosXML {
+public class GestionArchivosXMLTarea11 {
+	private static final File ARCHIVOXML = new File("src\\tarea\\datos\\xml\\xmlTarea11\\ConsultaAlumnosXML.xml");
 
 	private void crearNuevoElementoHijo(Document doc, Element alumno, String nombreElemento, String datosElemento) {
 		Element elemento = doc.createElement(nombreElemento);
@@ -55,9 +56,7 @@ public class GestionArchivosXML {
 
 			// Guardamos los elementos en un fichero XML
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.transform(new DOMSource(doc),
-					new StreamResult(new File("src\\tarea11\\BasesDatos\\ConsultaAlumnosXML.xml")));
-			System.out.println("Se han almacenado los datos en formato XML");
+			transformer.transform(new DOMSource(doc), new StreamResult(ARCHIVOXML));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +68,7 @@ public class GestionArchivosXML {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(new File("src\\tarea11\\BasesDatos\\ConsultaAlumnosXML.xml"));
+			Document doc = builder.parse(ARCHIVOXML);
 
 			// Obtenemos los elementos alumno
 			NodeList listaNodos = doc.getElementsByTagName("Alumno");
