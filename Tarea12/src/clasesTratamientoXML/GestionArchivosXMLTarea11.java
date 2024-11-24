@@ -19,7 +19,7 @@ import claseAlumno.Alumno;
 import claseAlumno.GestionAlumnosSQL;
 
 public class GestionArchivosXMLTarea11 {
-	private static final File ARCHIVOXML = new File("src\\tarea\\datos\\xml\\xmlTarea11\\ConsultaAlumnosXML.xml");
+	private static final File ARCHIVOXML = new File("src\\clasesTratamientoXML\\Tarea11ConsultaAlumnosXML.xml");
 
 	private void crearNuevoElementoHijo(Document doc, Element alumno, String nombreElemento, String datosElemento) {
 		Element elemento = doc.createElement(nombreElemento);

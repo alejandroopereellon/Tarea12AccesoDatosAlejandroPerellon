@@ -11,11 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import tarea.GestionBaseDatos;
+
+import basesDatos.GestionBaseDatos;
 
 public class GestionAlumnosSQL {
 	public void insertarAlumno(Alumno alumno) {
-
 		String sentencia = "INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?)";
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement stmt = conexion.prepareStatement(sentencia);) {
@@ -45,12 +45,15 @@ public class GestionAlumnosSQL {
 	}
 
 	/**
-	 * Este metod retorna la base de datos de los alumnos entera
+	 * Este metod retorna la base de datos de los alumnos entera en un formato de
+	 * texto
 	 * 
 	 * @return String con toda la base de datos escrita
 	 */
-	public void almacenarAlumnosFormatoTexto(File fichero) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fichero))) {
+	public void almacenarAlumnosFormatoTexto() {
+		File ficheroAlumnosTexto = new File("src\\datos\\archivosTexto\\ConsultaAlumnosTexto.txt");
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(ficheroAlumnosTexto))) {
 			for (Alumno alumno : mostarAlumnosConsultaSelect()) {
 				bw.write(alumno.getNia() + " | " + alumno.getNombre() + " | " + alumno.getApellidos() + " | "
 						+ alumno.getGenero() + " | " + alumno.getFechaNacimiento() + " | " + alumno.getCiclo() + " | "
@@ -62,13 +65,44 @@ public class GestionAlumnosSQL {
 		}
 
 	}
-	
+
+	/**
+	 * Este metodo recopila las lineas de texto y las convierte en un objeto alumno,
+	 * recopila todos los alumnos y devuelve un listado de los alumnos
+	 * 
+	 * @return listado de alumnos
+	 */
+	public ArrayList<Alumno> leerAlumnosDesdeFicheroTexto() {
+		File ficheroAlumnosTexto = new File("src\\datos\\archivosTexto\\ConsultaAlumnosTexto.txt");
+		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
+		try (BufferedReader br = new BufferedReader(new FileReader(ficheroAlumnosTexto))) {
+			String linea = "";
+			String[] datos = null;
+
+			// Almacenamos cada linea en un objeto de alumno
+			while ((linea = br.readLine()) != null) {
+				datos = linea.split(" \\| ");
+				listaAlumnos.add(new Alumno(Integer.valueOf(datos[0]), datos[1], datos[2], datos[3].charAt(0),
+						LocalDate.parse(datos[4]), datos[5], datos[6], datos[7]));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaAlumnos;
+	}
+
 	public void mostarAlumnosFormatoString() {
 		for (Alumno alumno : mostarAlumnosConsultaSelect()) {
 			System.out.println(alumno);
 		}
 	}
 
+	/**
+	 * Este metodo retorna un listado de alumnos de la base de datos, realiza una
+	 * consulta y de la lectura de la consulta crea un objeto alumno
+	 * 
+	 * @return listado de alumnos obtenida de la base de datos
+	 */
 	public ArrayList<Alumno> mostarAlumnosConsultaSelect() {
 		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
@@ -97,24 +131,6 @@ public class GestionAlumnosSQL {
 		return listaAlumnos;
 	}
 
-	public ArrayList<Alumno> leerAlumnosDesdeFicheroTexto(File fichero) {
-		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-		try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
-			String linea = "";
-			String[] datos = null;
-
-			// Almacenamos cada linea en un objeto de alumno
-			while ((linea = br.readLine()) != null) {
-				datos = linea.split(" \\| ");
-				listaAlumnos.add(new Alumno(Integer.valueOf(datos[0]), datos[1], datos[2], datos[3].charAt(0),
-						LocalDate.parse(datos[4]), datos[5], datos[6], datos[7]));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return listaAlumnos;
-	}
-
 	public void modificarNombreAlumnoPK(int primaryKey, String nombreNuevo) {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement stmt = conexion.prepareStatement("UPDATE alumno SET nombre = ? WHERE nia = ?")) {
@@ -136,6 +152,13 @@ public class GestionAlumnosSQL {
 		}
 	}
 
+	/**
+	 * Este metodo solicita el apellido a eliminar, creamos la sentencia delete y
+	 * ponemos de sentencia prepara el %apellido% para saber si lo tiene de primer o
+	 * segundo apellido
+	 * 
+	 * @param apellido es el apellido de los alumnos que se van a borrar
+	 */
 	public void eliminarAlumnosPorApellidos(String apellido) {
 		try (Connection conexion = new GestionBaseDatos().CrearConexion();
 				PreparedStatement stmt = conexion.prepareStatement("DELETE FROM alumno WHERE apellidos LIKE ?")) {

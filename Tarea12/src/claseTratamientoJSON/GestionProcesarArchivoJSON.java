@@ -14,7 +14,7 @@ import claseGrupo.Grupo;
 
 public class GestionProcesarArchivoJSON {
 
-	static final File ARCHIVO_JSON = new File("src\\tarea\\datos\\json\\consultaGruposJSON.json");
+	static final File ARCHIVO_JSON = new File("src\\claseTratamientoJSON\\consultaGruposJSON.json");
 
 	public void recuperarObjetoGrupoDesdeJSON() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -28,7 +28,7 @@ public class GestionProcesarArchivoJSON {
 				// Almacenamos los grupos del json
 				new GestionGruposSQL().insertarGruposBD(gru);
 				// Almacenamos los alumnos en la base de datos
-				for (Alumno alu : new GestionGruposSQL().realizarConsultaListadoAlumnosPertenecientesGrupo(gru)) {
+				for (Alumno alu : gru.getListaAlumnos()) {
 					new GestionAlumnosSQL().insertarAlumno(alu);
 				}
 			}

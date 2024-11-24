@@ -16,7 +16,7 @@ import claseGrupo.GestionGruposSQL;
 import claseGrupo.Grupo;
 
 public class GestionProcesarArchivosXMLGrupos {
-	private static final File ARCHIVOXML = new File("src\\tarea\\datos\\xml\\DatosGruposAlumnos.xml");
+	private static final File ARCHIVOXML = new File("src\\clasesTratamientoXML\\DatosGruposAlumnos.xml");
 
 	public void convertirXMLGrupoAlumnosIntroducirlosBD() {
 		try {
@@ -54,9 +54,9 @@ public class GestionProcesarArchivosXMLGrupos {
 		// Creamos el objeto grupo y lo anadimos a la base de datos
 		new GestionGruposSQL().insertarGruposBD(new Grupo(id, nombre, descripcion, tutor));
 		NodeList listaAlumnos = elementoGrupo.getElementsByTagName("alumno");
-		
+
 		for (int i = 0; i < listaAlumnos.getLength(); i++) {
-			
+
 			Node nodo = listaAlumnos.item(i);
 			Element elementoAlumno = (Element) nodo;
 			recuperarAlumnos(elementoAlumno);

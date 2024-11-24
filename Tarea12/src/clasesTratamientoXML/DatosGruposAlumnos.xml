@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Gurpos>
+	<grupo
+		descripcion="Primer grupo de Administración de Sistemas Informáticos en Red"
+		id="ASIRA" nombre="ASIRA" tutor="Andrés Navarro">
+		<alumno Genero="I" apellidos="IGNACIO" ciclo="ASIR" curso="2"
+			fechaNacimiento="2001-04-17" grupo="ASIRA" nia="24" nombre="IGNACIO" />
+		<alumno Genero="M" apellidos="MANUEL" ciclo="ASIR" curso="1"
+			fechaNacimiento="2004-03-19" grupo="ASIRA" nia="57" nombre="MANUEL" />
+		<alumno Genero="J" apellidos="JUAN" ciclo="ASIR" curso="1"
+			fechaNacimiento="2001-11-02" grupo="ASIRA" nia="103" nombre="JUAN" />
+	</grupo>
+	<grupo
+		descripcion="Segundo grupo de Administración de Sistemas Informáticos en Red"
+		id="ASIRB" nombre="ASIRB" tutor="Sofía Ramírez">
+		<alumno Genero="L" apellidos="LUCIA" ciclo="ASIR" curso="1"
+			fechaNacimiento="2003-08-12" grupo="ASIRB" nia="45" nombre="LUCIA" />
+		<alumno Genero="S" apellidos="SERGIO" ciclo="ASIR" curso="2"
+			fechaNacimiento="2000-11-03" grupo="ASIRB" nia="78" nombre="SERGIO" />
+		<alumno Genero="A" apellidos="ANGEL" ciclo="ASIR" curso="2"
+			fechaNacimiento="2003-03-07" grupo="ASIRB" nia="107" nombre="ANGEL" />
+	</grupo>
+	<grupo
+		descripcion="Tercer grupo de Administración de Sistemas Informáticos en Red"
+		id="ASIRC" nombre="ASIRC" tutor="Diego Torres" />
+	<grupo
+		descripcion="Cuarto grupo de Administración de Sistemas Informáticos en Red"
+		id="ASIRD" nombre="ASIRD" tutor="Elena Morales" />
+	<grupo descripcion="Primer grupo de Comercio y Administración" id="CASA"
+		nombre="CASA" tutor="Raquel Gómez">
+		<alumno Genero="P" apellidos="PAOLA" ciclo="CAS" curso="1"
+			fechaNacimiento="2004-04-01" grupo="CASA" nia="11" nombre="PAOLA" />
+		<alumno Genero="S" apellidos="SOFIA" ciclo="CAS" curso="2"
+			fechaNacimiento="2001-11-30" grupo="CASA" nia="46" nombre="SOFIA" />
+		<alumno Genero="D" apellidos="DAVID" ciclo="CAS" curso="1"
+			fechaNacimiento="2000-03-15" grupo="CASA" nia="54" nombre="DAVID" />
+		<alumno Genero="A" apellidos="ANA" ciclo="CAS" curso="1"
+			fechaNacimiento="2004-02-28" grupo="CASA" nia="89" nombre="ANA" />
+		<alumno Genero="I" apellidos="INES" ciclo="CAS" curso="1"
+			fechaNacimiento="2001-01-14" grupo="CASA" nia="108" nombre="INES" />
+	</grupo>
+	<grupo descripcion="Segundo grupo de Comercio y Administración" id="CASB"
+		nombre="CASB" tutor="Pablo Castillo">
+		<alumno Genero="R" apellidos="ROSA" ciclo="CAS" curso="2"
+			fechaNacimiento="2000-08-25" grupo="CASB" nia="104" nombre="ROSA" />
+	</grupo>
+	<grupo descripcion="Tercer grupo de Comercio y Administración" id="CASC"
+		nombre="CASC" tutor="Lucía Serrano">
+		<alumno Genero="M" apellidos="MARTA" ciclo="CAS" curso="1"
+			fechaNacimiento="2003-07-21" grupo="CASC" nia="91" nombre="MARTA" />
+	</grupo>
+	<grupo descripcion="Cuarto grupo de Comercio y Administración" id="CASD"
+		nombre="CASD" tutor="Alberto Jiménez">
+		<alumno Genero="R" apellidos="RAMON" ciclo="CAS" curso="2"
+			fechaNacimiento="1999-03-23" grupo="CASD" nia="111" nombre="RAMON" />
+	</grupo>
+	<grupo
+		descripcion="Primer grupo de Desarrollo de Aplicaciones Multiplataforma"
+		id="DAMA" nombre="DAMA" tutor="Luis Fernández">
+		<alumno Genero="A" apellidos="ALEJANDRO" ciclo="DAM" curso="2"
+			fechaNacimiento="2000-05-09" grupo="DAMA" nia="34"
+			nombre="ALEJANDRO" />
+		<alumno Genero="B" apellidos="BEATRIZ" ciclo="DAM" curso="1"
+			fechaNacimiento="2004-01-10" grupo="DAMA" nia="55" nombre="BEATRIZ" />
+		<alumno Genero="A" apellidos="ANDRES" ciclo="DAM" curso="1"
+			fechaNacimiento="2004-04-18" grupo="DAMA" nia="105" nombre="ANDRES" />
+	</grupo>
+	<grupo
+		descripcion="Segundo grupo de Desarrollo de Aplicaciones Multiplataforma"
+		id="DAMB" nombre="DAMB" tutor="María Sánchez">
+		<alumno Genero="A" apellidos="ANDREA" ciclo="DAM" curso="1"
+			fechaNacimiento="2002-09-10" grupo="DAMB" nia="12" nombre="ANDREA" />
+		<alumno Genero="E" apellidos="ELENA" ciclo="DAM" curso="1"
+			fechaNacimiento="2002-08-05" grupo="DAMB" nia="68" nombre="ELENA" />
+		<alumno Genero="M" apellidos="MARIO" ciclo="DAM" curso="1"
+			fechaNacimiento="2002-05-23" grupo="DAMB" nia="101" nombre="MARIO" />
+	</grupo>
+	<grupo
+		descripcion="Tercer grupo de Desarrollo de Aplicaciones Multiplataforma"
+		id="DAMC" nombre="DAMC" tutor="Carlos López">
+		<alumno Genero="L" apellidos="LAURA" ciclo="DAM" curso="2"
+			fechaNacimiento="2001-10-05" grupo="DAMC" nia="23" nombre="LAURA" />
+		<alumno Genero="M" apellidos="MARIANA" ciclo="DAM" curso="1"
+			fechaNacimiento="2002-06-15" grupo="DAMC" nia="67" nombre="MARIANA" />
+		<alumno Genero="R" apellidos="RAFAEL" ciclo="DAM" curso="2"
+			fechaNacimiento="2004-06-30" grupo="DAMC" nia="109" nombre="RAFAEL" />
+	</grupo>
+	<grupo
+		descripcion="Cuarto grupo de Desarrollo de Aplicaciones Multiplataforma"
+		id="DAMD" nombre="DAMD" tutor="Ana Pérez">
+		<alumno Genero="M" apellidos="LOPEZ SAINZ" ciclo="DAM" curso="D"
+			fechaNacimiento="1999-11-07" grupo="DAMD" nia="117" nombre="MIRIAM" />
+	</grupo>
+	<grupo
+		descripcion="Cuarto grupo de Desarrollo de Aplicaciones Multiplataforma"
+		id="DAME" nombre="DAME" tutor="Juan Luis Talamo" />
+	<grupo descripcion="Primer grupo de Desarrollo de Aplicaciones Web"
+		id="DAWA" nombre="DAWA" tutor="Jorge Martínez">
+		<alumno Genero="C" apellidos="CARLOS" ciclo="DAW" curso="2"
+			fechaNacimiento="2001-12-20" grupo="DAWA" nia="56" nombre="CARLOS" />
+	</grupo>
+	<grupo descripcion="Segundo grupo de Desarrollo de Aplicaciones Web"
+		id="DAWB" nombre="DAWB" tutor="Laura Romero">
+		<alumno Genero="P" apellidos="PABLO" ciclo="DAW" curso="2"
+			fechaNacimiento="2000-06-25" grupo="DAWB" nia="66" nombre="PABLO" />
+		<alumno Genero="R" apellidos="RAUL" ciclo="DAW" curso="1"
+			fechaNacimiento="2003-07-18" grupo="DAWB" nia="90" nombre="RAUL" />
+		<alumno Genero="L" apellidos="LAURA" ciclo="DAW" curso="1"
+			fechaNacimiento="2000-02-20" grupo="DAWB" nia="110" nombre="LAURA" />
+	</grupo>
+	<grupo descripcion="Tercer grupo de Desarrollo de Aplicaciones Web"
+		id="DAWC" nombre="DAWC" tutor="Francisco Ruiz">
+		<alumno Genero="J" apellidos="JAVIER" ciclo="DAW" curso="2"
+			fechaNacimiento="2003-05-22" grupo="DAWC" nia="35" nombre="JAVIER" />
+		<alumno Genero="R" apellidos="RUBEN" ciclo="DAW" curso="2"
+			fechaNacimiento="2000-12-12" grupo="DAWC" nia="79" nombre="RUBEN" />
+		<alumno Genero="C" apellidos="CARMEN" ciclo="DAW" curso="2"
+			fechaNacimiento="2003-09-15" grupo="DAWC" nia="102" nombre="CARMEN" />
+		<alumno Genero="E" apellidos="ELENA" ciclo="DAW" curso="1"
+			fechaNacimiento="2002-12-29" grupo="DAWC" nia="106" nombre="ELENA" />
+	</grupo>
+	<grupo descripcion="Cuarto grupo de Desarrollo de Aplicaciones Web"
+		id="DAWD" nombre="DAWD" tutor="Patricia Gómez" />
+</Gurpos>

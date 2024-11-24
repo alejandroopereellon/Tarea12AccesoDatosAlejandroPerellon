@@ -16,7 +16,7 @@ import claseGrupo.GestionGruposSQL;
 import claseGrupo.Grupo;
 
 public class GestionCrearArchivosXMLGrupos {
-	private static final File ARCHIVOXML = new File("src\\tarea\\datos\\xml\\DatosGruposAlumnos.xml");
+	private static final File ARCHIVOXML = new File("src\\clasesTratamientoXML\\DatosGruposAlumnos.xml");
 
 	/**
 	 * Guardar todos los grupos (con toda su información como atributos) en un
@@ -43,7 +43,7 @@ public class GestionCrearArchivosXMLGrupos {
 			// Guardar el archivo XML
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.transform(new DOMSource(doc), new StreamResult(ARCHIVOXML));
-			
+
 			System.out.println("Se han guardado los datos correctamente");
 
 		} catch (Exception e) {
