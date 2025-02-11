@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.Year;
 import java.util.Scanner;
 
-public class CrearAlumnos {
+public class CrearAlumnos2 {
 
 	public Alumno crearAlumno() {
 		@SuppressWarnings("resource")
@@ -88,7 +88,7 @@ public class CrearAlumnos {
 		return new Alumno(nia, nombre, apellidos, genero, fechaNacimiento, ciclo, curso, grupo);
 	}
 
-	public CrearAlumnos() {
+	public CrearAlumnos2() {
 		super();
 	}
 

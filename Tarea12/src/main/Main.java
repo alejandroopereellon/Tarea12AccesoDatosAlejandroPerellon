@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import basesDatos.GestionBaseDatos;
 import claseAlumno.Alumno;
-import claseAlumno.CrearAlumnos;
+import claseAlumno.CrearAlumnos2;
 import claseAlumno.GestionAlumnosSQL;
 import claseGrupo.CrearGrupo;
 import claseGrupo.GestionGruposSQL;
@@ -62,7 +62,7 @@ public class Main {
 			/**
 			 * Insertar un nuevo alumno.
 			 */
-			new GestionAlumnosSQL().insertarAlumno(new CrearAlumnos().crearAlumno());
+			new GestionAlumnosSQL().insertarAlumno(new CrearAlumnos2().crearAlumno());
 			break;
 		case 2:
 			/**
